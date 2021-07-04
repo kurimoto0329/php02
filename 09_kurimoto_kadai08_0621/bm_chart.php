@@ -1,12 +1,12 @@
 <?php 
 include('funcs.php');
 
-
 //1. DB接続します
-$pdo = db_connect();
+$pdo = db_conn();
 $graph_x = '"☆","☆☆","☆☆☆","☆☆☆☆","☆☆☆☆☆"';
 $graph_y = '';
 $hist = [0,0,0,0,0]; 
+
 
 //2．SQL文を用意(データ取得：SELECT)
 $stmt = $pdo->prepare("SELECT * FROM gs_bm_table");

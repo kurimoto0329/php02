@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>データ登録</title>
-  <link href="../css/bootstrap.min.css" rel="stylesheet">
+  <link href="./css/bootstrap.min.css" rel="stylesheet">
   <style>div{padding: 10px;font-size:16px;}</style>
 </head>
 <body>
@@ -27,8 +27,17 @@
      <label>書籍名：<br><input type="text" name="book_name" style="width:913px;"></label><br>
      <label>書籍URL：<br><input type="text" name="book_url" style="width:913px; height:60px;"></label><br>
      <label>書籍概要：<br><textArea name="book_comment" rows="8" cols="100"></textArea></label><br>
-     <label>レーティング：<br><input type="text" name="score" style="width:60px;"></label><br>
-     <input type="submit" value="送信">
+     <label>レーティング：<br>
+        <select name="score" id="">
+            <option value="" hidden>Select</option>
+            <option value="1" style = "color:gold;">★</option>
+            <option value="2" style = "color:gold;">★★</option>
+            <option value="3" style = "color:gold;">★★★</option>
+            <option value="4" style = "color:gold;">★★★★</option>
+            <option value="5" style = "color:gold;">★★★★★</option>
+        </select>
+    </label><br>
+    <input type="submit" value="送信">
     </fieldset>
   </div>
 </form>

@@ -1,5 +1,7 @@
 <?php
 
+require_once("funcs.php");
+
 if(
     !isset($_POST['book_name']) || $_POST['book_name'] == '' ||
     !isset($_POST['book_url']) || $_POST['book_url'] == '' ||
@@ -20,12 +22,7 @@ $book_comment = $_POST['book_comment'];
 $score = $_POST['score'];
 
 // 2. DB接続します
-try {
-  //Password:MAMP='root',XAMPP=''
-  $pdo = new PDO('mysql:dbname=kadai_8;charset=utf8;host=localhost','root','root');
-} catch (PDOException $e) {
-  exit('DBConnectError:'.$e->getMessage());
-}
+$pdo = db_conn();
 
 
 // 3. UPDATE gs_an_table SET....;
@@ -44,13 +41,10 @@ $stmt ->bindValue(':e',$id,           PDO::PARAM_INT);
 $status = $stmt->execute();
 
 if ($status == false){
-    $error = $stmt ->errorInfo();
-    exit("QueryError:".$error[2]);
-
+  sql_error($status);
 }else{
     //select.phpへのリダイレクト
-    header('Location: bm_list_view.php');
-    exit;
+    redirect('bm_list_view.php');
 }
 
 ?>

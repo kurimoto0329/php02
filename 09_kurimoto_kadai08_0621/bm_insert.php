@@ -1,5 +1,7 @@
 <?php
 
+require_once("funcs.php");
+
 if(
   !isset($_POST['book_name']) || $_POST['book_name'] == '' ||
   !isset($_POST['book_url']) || $_POST['book_url'] == '' ||
@@ -22,12 +24,7 @@ $score = $_POST['score'];
 
 
 // 2. DB接続します
-try {
-  //Password:MAMP='root',XAMPP=''
-  $pdo = new PDO('mysql:dbname=kadai_8;charset=utf8;host=localhost','root','root');
-} catch (PDOException $e) {
-  exit('DBConnectError:'.$e->getMessage());
-}
+$pdo = db_conn();
 
 
 // ３．SQL文を用意(データ登録：INSERT)
@@ -48,11 +45,9 @@ $status = $stmt->execute();
 // 6．データ登録処理後
 if($status==false){
   //SQL実行時にエラーがある場合（エラーオブジェクト取得して表示）
-  $error = $stmt->errorInfo();
-  exit("ErrorMassage:".$error[2]);
+  sql_error($status);
 }else{
   //５．index.phpへリダイレクト
-  header('Location: bm_insert_view.php');
-  
+  redirect('bm_insert_view.php');
 }
 ?>
